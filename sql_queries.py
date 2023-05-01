@@ -20,23 +20,23 @@ time_table_drop = "DROP TABLE IF EXISTS time"
 staging_events_table_create= ("""
     CREATE TABLE IF NOT EXISTS stage_event
     (
-        artist          TEXT,
+        artist          VARCHAR(256),
         auth            TEXT,
-        first_name      TEXT,
+        first_name      VARCHAR(256),
         gender          TEXT,
         item_in_session INTEGER,
-        last_name       TEXT,
+        last_name       VARCHAR(256),
         length          FLOAT4,
         level           TEXT,
-        location        TEXT,
+        location        VARCHAR(256),
         method          TEXT,
         page            TEXT,
         registration    FLOAT8,
         session_id      INTEGER,
-        song            TEXT,
+        song            VARCHAR(256),
         status          INTEGER,
         ts              BIGINT,
-        user_agent      TEXT,
+        user_agent      VARCHAR(256),
         user_id         TEXT
     );
 """)
@@ -45,14 +45,14 @@ staging_songs_table_create = ("""
     CREATE TABLE IF NOT EXISTS stage_song
     (
         song_id             TEXT,
-        title               TEXT,
+        title               VARCHAR(256),
         duration            FLOAT4,
         year                SMALLINT,
         artist_id           TEXT,
-        artist_name         TEXT,
+        artist_name         VARCHAR(256),
         artist_latitude     REAL,
         artist_longitude    REAL,
-        artist_location     TEXT,
+        artist_location     VARCHAR(256),
         num_songs           INTEGER
     );
 """)
@@ -67,8 +67,8 @@ songplay_table_create = ("""
         song_id        TEXT,
         artist_id      TEXT,
         session_id     INTEGER,
-        location       TEXT,
-        user_agent     TEXT
+        location       VARCHAR(256),
+        user_agent     VARCHAR(256)
     ) diststyle key;
 """)
 
@@ -76,8 +76,8 @@ user_table_create = ("""
     CREATE TABLE IF NOT EXISTS users
     (
         user_id     TEXT PRIMARY KEY SORTKEY,
-        first_name  TEXT,
-        last_name   TEXT,
+        first_name  VARCHAR(256),
+        last_name   VARCHAR(256),
         gender      TEXT,
         level       TEXT
     ) diststyle all;
@@ -87,7 +87,7 @@ song_table_create = ("""
     CREATE TABLE IF NOT EXISTS songs
     (
         song_id     TEXT PRIMARY KEY SORTKEY,
-        title       TEXT,
+        title       VARCHAR(256),
         artist_id   TEXT DISTKEY,
         year        SMALLINT,
         duration    FLOAT4
@@ -98,8 +98,8 @@ artist_table_create = ("""
     CREATE TABLE IF NOT EXISTS artists
     (
         artist_id   TEXT PRIMARY KEY SORTKEY,
-        name        TEXT,
-        location    TEXT,
+        name        VARCHAR(256),
+        location    VARCHAR(256),
         latitude    FLOAT4,
         longitude   FLOAT4
     ) diststyle all;
